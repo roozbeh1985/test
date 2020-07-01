@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+<h1>hi roozbeh</h1>
+<form action="/" method="get" id="myford">
+    <input type="text" name="name" id="name" placeholder="نام">
+    <input type="email" name="email" id="email" placeholder="نام">
+    <input type="submit" id="rooz" >
+</form>
+<div id="roozbeh" style="display: none;width: 100px;height: 200px; background-color: #8a6d3b">
+
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket=io();
+    $("#myford").submit(function (e) {
+        e.preventDefault();
+        var username={
+            name:$('#name').val(),
+            email:$('#email').val()
+        };
+        socket.emit('new_user',username);
+        $("#myford").slideUp('fast');
+        $("#roozbeh").slideDown('fast');
+
+
+    })
+</script>
+
+</body>
+</html>
